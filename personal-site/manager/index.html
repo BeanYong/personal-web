@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+	<div id="app">
+		<!-- 左侧导航 -->
+		<el-col :span="4">
+			<el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
+			 background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+				<el-menu-item index="1" v-if="isCollapse" @click="toggleCollapse">
+					<i class="el-icon-arrow-right"></i>
+					<span slot="title">展开菜单</span>
+				</el-menu-item>
+				<el-menu-item index="1" v-if="!isCollapse" @click="toggleCollapse">
+					<i class="el-icon-arrow-left"></i>
+					<span slot="title">关闭菜单</span>
+				</el-menu-item>
+				<el-submenu index="2">
+					<template slot="title">
+						<i class="el-icon-menu"></i>
+						<span slot="title">我的世界</span>
+					</template>
+					<el-menu-item index="2-1">首页管理</el-menu-item>
+				</el-submenu>
+				<el-menu-item index="3">
+					<i class="el-icon-edit"></i>
+					<span slot="title">小思绪</span>
+				</el-menu-item>
+				<el-menu-item index="4">
+					<i class="el-icon-picture"></i>
+					<span slot="title">走走停停</span>
+				</el-menu-item>
+				<el-menu-item index="5">
+					<i class="el-icon-message"></i>
+					<span slot="title">勾搭一下</span>
+				</el-menu-item>
+				<el-menu-item index="6">
+					<i class="el-icon-time"></i>
+					<span slot="title">时光卷轴</span>
+				</el-menu-item>
+			</el-menu>
+		</el-col>
+
+		<!-- 我的世界 -->
+		<el-col :span="12" :offset="2">
+			<el-form ref="form" :model="home" label-width="120px">
+				<el-form-item label="欢迎语头部标题">
+					<el-input v-model="home.title" placeholder="请在此输入头部标题"></el-input>
+				</el-form-item>
+				<el-form-item label="欢迎语正文">
+					<el-input type="textarea" v-model="home.content" placeholder="请在此输入正文，换行用'英文分号'分隔"></el-input>
+				</el-form-item>
+				<el-form-item label="欢迎语尾部标题">
+					<el-input v-model="home.tail" placeholder="请在此输入尾部标题"></el-input>
+				</el-form-item>
+				<el-form-item label="主人名称">
+					<el-input v-model="home.owner" placeholder="请在此输入本站主人姓名"></el-input>
+				</el-form-item>
+				<el-form-item label="主人标签">
+					<el-input type="textarea" v-model="home.label" placeholder="请在此输入主人标签，如需换行用'英文分号'分隔"></el-input>
+				</el-form-item>
+				<el-form-item label="展示照片">
+					<el-upload class="upload-demo" action="http://119.29.247.154:5001/api/beanyon/manager/showpic" :on-preview="handlePreview"
+					 :on-remove="handleRemove" multiple :limit="1" :on-exceed="handleExceed" :file-list="fileList">
+						<el-button size="small" type="primary">点击上传</el-button>
+						<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+					</el-upload>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" @click="onSubmit">立即创建</el-button>
+					<el-button>取消</el-button>
+				</el-form-item>
+			</el-form>
+		</el-col>
+			<el-form action="http://119.29.247.154:5001/api/beanyon/manager/receivepic" method="POST">
+				<el-form-item id="submit-form">
+					<el-input type="file" placeholder="beanyon"></el-input>
+				</el-form-item>
+				<button id="test-btn">upload</button>
+			</el-form>
+	</div>
+	<script src="../../commonjs/jquery-3.2.1.min.js"></script>
+	<!-- 先引入 Vue -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script>
+		$("#test-btn").click(function(){
+			console.log("heehda");
+			$("#submit-form").submit();
+		});
+		var app = new Vue({
+			el: '#app',
+			data: function () {
+				return {
+					isCollapse: true,
+					home: { title: null, content: null, tail: null, owner: null, label: null, image: null },
+					fileList: []
+				};
+			},
+			created: function () {
+				this.sendTips("登录成功", "尊敬的BeanYon，欢迎你！", "success");
+			},
+			methods: {
+				handleOpen(key, keyPath) {
+					console.log(key, keyPath);
+				},
+				handleClose(key, keyPath) {
+					console.log(key, keyPath);
+				},
+				toggleCollapse() {
+					this.isCollapse = !this.isCollapse;
+				},
+				handleRemove(file, fileList) {
+					console.log(file, fileList);
+				},
+				handlePreview(file) {
+					console.log(file);
+				},
+				handleExceed(files, fileList) {
+					this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+				},
+				/**
+				 * 发送通知
+				 *
+				 * @param title 标题
+				 * @param msg 消息内容
+				 * @param type 类型
+				 */
+				sendTips(title, msg, type) {
+					this.$notify({
+						title: title,
+						message: msg,
+						type: type
+					});
+				},
+				/**
+				 * 提交信息
+				 */
+				onSubmit() {
+					$.post("http://119.29.247.154:5001/api/beanyon/manager/home", this.home, function (result) {
+						if(result.result){
+							app.sendTips(result.title,result.message,"success");
+						} else {
+							app.sendTips(result.title,result.message,"error");
+						}
+					});
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

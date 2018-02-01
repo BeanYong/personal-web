@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>BeanYon's world</title>
+	<meta charset=utf-8>
+	<link rel="stylesheet" type="text/css" href='css/global.css' />
+	<style>
+		#content {
+			padding-left: 12%;
+			padding-right: 14%;
+		}
+
+		#content-left {
+			width: 60%;
+			float: left;
+			line-height: 36px;
+			color: #666;
+		}
+
+		#content-left a:hover{
+			color: #666;
+		}
+
+		#content-left h3 {
+			color: #333;
+		}
+
+		#content-right {
+			width: 40%;
+			float: left;
+			text-align: right;
+			margin-top: -36px;
+		}
+
+		#content-right img {
+			width: 60%;
+			height: auto;
+		}
+
+		#my-desc {
+			width: 100%;
+			font-size: 16px;
+			line-height: 28px;
+			text-align: right;
+			color: #666;
+		}
+
+		#my-desc h3 {
+			color: #000;
+			letter-spacing: 2px;
+		}
+
+		#copyright {
+			width: 75%;
+			position: absolute;
+			bottom: 30px;
+			text-align: center;
+			font-size: 14px;
+			color: #999;
+			letter-spacing: 2px;
+		}
+
+		#top-nav li:nth-child(1) a {
+			color: #4ab8b8;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="top-include"></div>
+		<div id="content">
+			<div id="content-left">
+				<h3>Hi，欢迎来到我的世界...</h3>
+				<p class="content-list-text">在这里，有我的</p>
+				<p class="content-list-text">零碎的小思绪</p>
+				<p class="content-list-text">随风渐远的回忆</p>
+				<p class="content-list-text">还在路上的远方</p>
+				<a class="content-list-text" href="./travel.html">和她...</a>
+				<h3>...或者，至少是我的网站</h3>
+			</div>
+			<div id="content-right">
+				<img src="imgs/01.jpg">
+				<div id="my-desc">
+					<h3>BeanYon</h3>
+					<p>95后男青年</p>
+					<p>在读研究生</p>
+					<p>程序猿</p>
+					<p>业余写者</p>
+				</div>
+			</div>
+		</div>
+		<div id="copyright">
+			&copy;Copyright 2017 BeanYon
+		</div>
+	</div>
+	<script src="../commonjs/jquery-3.2.1.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("div#top-include").load("top-nav.html", function () {
+				$("div#container").fadeIn(1000);
+			});
+		});
+	</script>
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1271330166'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1271330166' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+
+</html>

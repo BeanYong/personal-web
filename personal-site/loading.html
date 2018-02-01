@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>BeanYon's world</title>
+	<meta charset=utf-8>
+	<link rel="stylesheet" type="text/css" href='css/global.css' />
+	<style>
+		#preload {
+			width: 100%;
+			height: 100vh;
+			padding-top: 36vh;
+			position: fixed;
+			background: #fff;
+		}
+
+		#loading-bar-box-circle {
+			width: 13vh;
+			height: 10vh;
+			margin: 0 auto;
+			padding-top: 3vh;
+			border: 1px solid #acacac;
+			border-radius: 50%;
+		}
+
+		#loading-bar-box {
+			margin: 0 auto;
+			width: 42px;
+		}
+
+		.loading-bar {
+			width: inherit;
+			height: 0.5vh;
+			background: #acacac;
+			margin-bottom: 0.5vh;
+			position: relative;
+		}
+
+		.loading-bar-odd {
+			animation: loading-odd 0.5s infinite;
+			animation-direction: alternate;
+		}
+
+		.loading-bar-even {
+			animation: loading-even 0.5s infinite;
+			animation-direction: alternate;
+		}
+
+		@keyframes loading-odd {
+			0% {
+				left: 10px;
+			}
+			100% {
+				left: -10px;
+			}
+		}
+
+		@keyframes loading-even {
+			0% {
+				left: -10px;
+			}
+			100% {
+				left: 10px;
+			}
+		}
+
+		#progress-text {
+			text-align: center;
+			color: #acacac;
+			padding-top: 1vh;
+			font-size: 18px;
+			text-shadow: 0px 2px 2px #acacac;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="preload">
+		<div id="loading-bar-box-circle">
+			<div id="loading-bar-box">
+				<div class="loading-bar loading-bar-odd"></div>
+				<div class="loading-bar loading-bar-even"></div>
+				<div class="loading-bar loading-bar-odd"></div>
+				<div class="loading-bar loading-bar-even"></div>
+			</div>
+			<p id="progress-text">0%</p>
+		</div>
+	</div>
+	<script src="../commonjs/jquery-3.2.1.min.js"></script>
+	<script src="js/preload.js"></script>
+	<script>
+		$(document).ready(function () {
+			preloadImages(imgSrcArr);
+			$.get("http://127.0.0.1:5001/test", function(data, status){
+				alert(data+","+status);
+			});
+		});
+	</script>
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1271330166'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1271330166' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+
+</html>

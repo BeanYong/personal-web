@@ -1,0 +1,312 @@
+<html>
+
+<head>
+	<title>步履依然-BeanYon</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link href="font/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		#content {
+			margin: 0 auto;
+		}
+
+		.content-item {
+			text-align: center;
+			padding-bottom: 40px;
+		}
+
+		.content-item img {
+			width: 400px;
+		}
+
+		.content-item span {
+			display: block;
+			width: 600px;
+			margin: 0 auto;
+			padding-bottom: 8px;
+			border-bottom: 1px solid #ccc;
+			font-weight: 300;
+			font-size: 22px;
+			color: #333;
+			text-align: left;
+			margin-bottom: 20px;
+		}
+
+		.content-item span note {
+			float: right;
+		}
+
+		.content-item p {
+			padding-bottom: 4px;
+			width: 200px;
+			border-bottom: 1px solid #ccc;
+			margin: 0 auto;
+			margin-top: 20px;
+			color: #999;
+			margin-bottom: 28px;
+		}
+
+		#copyright {
+			width: 100%;
+			float: left;
+			margin-bottom: 30px;
+			text-align: center;
+			font-size: 14px;
+			color: #999;
+			letter-spacing: 2px;
+		}
+
+		#to-her-text {
+			width: 400px;
+			color: #333;
+			text-align: left;
+			text-indent: 40px;
+			line-height: 32px;
+		}
+
+		#target-box {
+			width: 100%;
+			height: 100vh;
+			background: #2C2D2F;
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+		}
+
+		#target {
+			width: 80vh;
+			height: 80vh;
+			margin: 0 auto;
+			background: #000;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			position: relative;
+			top: 10vh;
+			border-radius: 4px;
+			box-shadow: 0px 0px 6px #fff;
+			overflow: hidden;
+		}
+
+		#prev,
+		#next {
+			position: absolute;
+			width: 8vh;
+			height: 8vh;
+			line-height: 4vh;
+			display: block;
+			border: 1px solid #666;
+			text-align: center;
+			background: rgb(77, 56, 56);
+			opacity: 0.6;
+			color: #fff;
+		}
+
+		#prev {
+			left: 0px;
+			top: 34vh;
+		}
+
+		#next {
+			right: 0px;
+			top: 34vh;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="top-include"></div>
+		<div class="top-slider"></div>
+		<div id="content">
+			<div class="content-item">
+				<span>扬州
+					<note>2017年10月</note>
+				</span>
+				<img src="imgs/yangzhou01.jpg" onclick="preview(0)">
+				<p>瘦西湖</p>
+				<img src="imgs/yangzhou02.jpg" onclick="preview(1)">
+				<p>瘦西湖</p>
+			</div>
+			<div class="content-item">
+				<span>镇江
+					<note>2017年10月</note>
+				</span>
+				<img src="imgs/zhenjiang01.jpg" onclick="preview(2)">
+				<p>西津渡</p>
+				<img src="imgs/zhenjiang02.jpg" onclick="preview(3)">
+				<p>西津渡</p>
+				<img src="imgs/zhenjiang03.jpg" onclick="preview(4)">
+				<p>不知名甜品店</p>
+			</div>
+			<div class="content-item">
+				<span>上海
+					<note>2017年5月</note>
+				</span>
+				<img src="imgs/shanghai01.jpg" onclick="preview(5)">
+				<p>1933老场坊</p>
+				<img src="imgs/shanghai02.jpg" onclick="preview(6)">
+				<p>外滩</p>
+				<img src="imgs/shanghai03.jpg" onclick="preview(7)">
+				<p>外滩</p>
+			</div>
+			<div class="content-item">
+				<span>天水
+					<note>2017年1月</note>
+				</span>
+				<img src="imgs/tianshui01.jpg" onclick="preview(8)">
+				<p>不知名咖啡馆</p>
+			</div>
+			<div class="content-item">
+				<span>南昌
+					<note>2016年6月</note>
+				</span>
+				<img src="imgs/nanchang01.jpg" onclick="preview(9)">
+				<p>某公交车上</p>
+				<img src="imgs/nanchang02.jpg" onclick="preview(10)">
+				<p>南昌大学 佐布小镇</p>
+			</div>
+			<div class="content-item">
+				<span>天水市第五中学
+					<note>十年前</note>
+				</span>
+				<img src="imgs/shinian01.jpg" onclick="preview(11)">
+				<p id="to-her-text">哇哦，十年了！</p>
+			</div>
+		</div>
+		<!--<div class="scroll-top"></div>-->
+		<div id="copyright">
+			&copy;Copyright 2017 BeanYon
+		</div>
+	</div>
+	<div id="target-box">
+		<div id="target">
+			<button id="prev">
+				<i class="fa fa-angle-left fa-2x"></i>
+			</button>
+			<button id="next">
+				<i class="fa fa-angle-right fa-2x"></i>
+			</button>
+		</div>
+	</div>
+	<script src="../commonjs/jquery-3.2.1.min.js"></script>
+	<script src="js/global.js"></script>
+	<script src="js/top-slider.js"></script>
+	<script src="js/scroll-top.js"></script>
+	<script>
+		//图片路径数组
+		var imgSrcArr = [
+			"http://120.79.198.228/personal-site/imgs/yangzhou01.jpg",
+			"http://120.79.198.228/personal-site/imgs/yangzhou02.jpg",
+			"http://120.79.198.228/personal-site/imgs/zhenjiang01.jpg",
+			"http://120.79.198.228/personal-site/imgs/zhenjiang02.jpg",
+			"http://120.79.198.228/personal-site/imgs/zhenjiang03.jpg",
+			"http://120.79.198.228/personal-site/imgs/shanghai01.jpg",
+			"http://120.79.198.228/personal-site/imgs/shanghai02.jpg",
+			"http://120.79.198.228/personal-site/imgs/shanghai03.jpg",
+			"http://120.79.198.228/personal-site/imgs/tianshui01.jpg",
+			"http://120.79.198.228/personal-site/imgs/nanchang01.jpg",
+			"http://120.79.198.228/personal-site/imgs/nanchang02.jpg",
+			"http://120.79.198.228/personal-site/imgs/shinian01.jpg"];
+		//图片路径数组长度
+		var imgSrcArrLen = imgSrcArr.length;
+		//当前图片在数组中的下标
+		var curImageIndex = 0;
+		/**
+		 * 设置默认图片
+		 * 
+		 * @param index 图片链接在数组中的下标 
+		 */
+		var setDefaultImage = function(index){
+			$("#target").css("background-image", 'url(' + imgSrcArr[index] + ')');
+		}
+		setDefaultImage(curImageIndex);
+		/**
+		 * 向前切换图片
+		 */
+		$("#prev").on("click", function () {
+			setImage("prev");
+		});
+		/**
+		 * 向后切换图片
+		 */
+		$("#next").on("click", function () {
+			setImage("next");
+		});
+		$("#target").mouseenter(function () {
+			controllerSlideLeft($("#prev"), "0vh");
+			controllerSlideRight($("#next"), "0vh");
+		});
+		$("#target").mouseleave(function () {
+			controllerSlideLeft($("#prev"), "-8vh");
+			controllerSlideRight($("#next"), "-8vh");
+		});
+		/**
+		 * 阻止点击事件冒泡
+		 */
+		$("#target").on("click", function (event) {
+			event.stopPropagation();
+		})
+		/**
+		 * 图片预览
+		 * 
+		 * @param index 目标图片下标
+		 */
+		var preview = function(index){
+			curImageIndex = index;
+			setDefaultImage(index);
+			$("#target-box").fadeIn(100);
+		}
+		/**
+		 * 设置图片显示
+		 *
+		 * @param direction 切换方向"prev"为向前切换"next"为向后切换
+		 */
+		var setImage = function (direction) {
+			if (direction === "prev") {
+				//向前翻页
+				curImageIndex = (--curImageIndex) <= 0 ? imgSrcArrLen - 1 : curImageIndex;
+				$("#target").css("background-image", 'url(' + imgSrcArr[curImageIndex] + ')');
+			} else {
+				//向后翻页
+				curImageIndex = (++curImageIndex) >= imgSrcArrLen ? 0 : curImageIndex;
+				$("#target").css("background-image", 'url(' + imgSrcArr[curImageIndex] + ')');
+			}
+		}
+		/**
+		 * 左侧翻页控制按钮滑动事件
+		 *
+		 * @param obj 按钮jQuery对象
+		 * @param dimen 滑动方向及长度
+		 */
+		var controllerSlideLeft = function (obj, dimen) {
+			obj.animate({ left: dimen });
+		}
+		/**
+		 * 右侧翻页控制按钮滑动事件
+		 *
+		 * @param obj 按钮jQuery对象
+		 * @param dimen 滑动方向及长度
+		 */
+		var controllerSlideRight = function (obj, dimen) {
+			obj.animate({ right: dimen });
+		}
+		/**
+		 * 延时隐藏图片控制按钮
+		 */
+		setTimeout(() => {
+			controllerSlideLeft($("#prev"), "-8vh");
+			controllerSlideRight($("#next"), "-8vh");
+		}, 2000);
+		/**
+		 * 隐藏照片墙
+		 */
+		$("#target-box").on("click", function () {
+			$(this).fadeOut(150);
+		});
+	</script>
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1271330166'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1271330166' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+
+</html>
